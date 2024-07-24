@@ -31,7 +31,7 @@ const Register = () => {
       <KeyboardAvoidingView>
         <View style={styles.longincontainer}>
           <View style={styles.logintextcontainer}>
-            <Text style={styles.Logintext}>Register To your Account hhhhhj</Text>
+            <Text style={styles.Logintext}>Register To your Account</Text>
           </View>
           <View style={styles.deatilscontainer}>
             <View style={styles.logindetails}>

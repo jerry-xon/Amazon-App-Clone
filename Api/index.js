@@ -32,3 +32,12 @@ mongoose
   })
 
   //endpoint to register in the app
+  app.post("/register",async(res,res) =>{
+
+    try{
+
+    }catch(error){
+      console.log("error resgistering user",error)
+      res.status(500).json({message:"Resgistration failed"})
+    }
+  })
