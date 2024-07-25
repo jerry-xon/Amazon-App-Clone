@@ -3,16 +3,16 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
   verified: {
     type: Boolean,
@@ -28,10 +28,15 @@ const userSchema = new mongoose.Schema({
       landmark: String,
       city: String,
       country: String,
-      postalcode: String,
+      postalCode: String,
     },
   ],
-  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

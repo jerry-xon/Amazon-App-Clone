@@ -20,23 +20,33 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const navigation = useNavigation();
-  const handelRegister = () => {
+  const handleRegister = () => {
     const user = {
       name: name,
       email: email,
       password: password,
     };
-    //send a post request to backend API
-    axios.post("http://localhost:8000/register", user).then((response) => {
-      console.log(response);
-      Alert.alert("Registration successful", "You registered successfully ");
-      setName("");
-      setEmail("");
-      setPassword("");
-    }).catch((error) => {
-      Alert.alert("Registration Error", "An error occured during registration");
-      console.log("Registration failed", error);
-    })
+
+    // send a POST  request to the backend API to register the user
+    axios
+      .post("http://localhost:8000/register", user)
+      .then((response) => {
+        console.log(response);
+        Alert.alert(
+          "Registration successful",
+          "You have been registered Successfully"
+        );
+        setName("");
+        setEmail("");
+        setPassword("");
+      })
+      .catch((error) => {
+        Alert.alert(
+          "Registration Error",
+          "An error occurred while registering"
+        );
+        console.log("registration failed", error);
+      });
   };
 
   return (
@@ -96,7 +106,7 @@ const Register = () => {
           </View>
           <View>
             <Pressable
-              onPress={handelRegister}
+              onPress={handleRegister}
 
               style={styles.loginbutton}>
               <Text style={styles.loginbuttontext}>Register</Text>
