@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   KeyboardAvoidingView,
   Pressable,
@@ -12,12 +13,32 @@ import React from "react";
 import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const navigation = useNavigation();
+  const handelRegister = () => {
+    const user = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    //send a post request to backend API
+    axios.post("http://localhost:8000/register", user).then((response) => {
+      console.log(response);
+      Alert.alert("Registration successful", "You registered successfully ");
+      setName("");
+      setEmail("");
+      setPassword("");
+    }).catch((error) => {
+      Alert.alert("Registration Error", "An error occured during registration");
+      console.log("Registration failed", error);
+    })
+  };
+
   return (
     <SafeAreaView style={styles.ScreenBG}>
       <View>
@@ -58,6 +79,7 @@ const Register = () => {
               <AntDesign name="lock" size={24} color="gray" />
               <TextInput
                 value={password}
+                secureTextEntry={true}
                 onChangeText={(text) => setPassword(text)}
                 placeholder="enter your Password"
                 placeholderTextColor={"#959595"}
@@ -73,7 +95,10 @@ const Register = () => {
             <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
           </View>
           <View>
-            <Pressable style={styles.loginbutton}>
+            <Pressable
+              onPress={handelRegister}
+
+              style={styles.loginbutton}>
               <Text style={styles.loginbuttontext}>Register</Text>
             </Pressable>
             <Pressable style={styles.donthaveaccount}>
