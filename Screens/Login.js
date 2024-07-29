@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   KeyboardAvoidingView,
   Pressable,
@@ -8,15 +9,51 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Home from "./Home";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem("authToken");
+
+        if (token) {
+          navigation.replace("Main");
+        }
+      } catch (err) {
+        console.log("error message", err);
+      }
+    };
+    checkLoginStatus();
+  }, []);
+  const handleLogin = () => {
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    axios
+      .post("http://localhost:8000/login", user)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        AsyncStorage.setItem("authToken", token);
+        navigation.replace("Main");
+      })
+      .catch((error) => {
+        Alert.alert("Login Error", "Invalid Email");
+        console.log(error);
+      });
+  };
   return (
     <SafeAreaView style={styles.ScreenBG}>
       <View>
@@ -63,10 +100,11 @@ const Login = () => {
             <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
           </View>
           <View>
-            <Pressable style={styles.loginbutton}>
+            <Pressable onPress={handleLogin}
+              style={styles.loginbutton}>
               <Text style={styles.loginbuttontext}>Login</Text>
             </Pressable>
-            <Pressable style={styles.donthaveaccount} onPress={()=> navigation.navigate("Register")}>
+            <Pressable style={styles.donthaveaccount} onPress={() => navigation.navigate("Register")}>
               <Text style={styles.donthaveaccountText}>Dont't have an account? Sign Up</Text>
             </Pressable>
           </View>
@@ -139,13 +177,13 @@ const styles = StyleSheet.create({
     color: "white",
   },
   deatilscontainer: { alignItems: "center", rowGap: 20 },
-  donthaveaccount:{
+  donthaveaccount: {
     alignItems: "center",
-    padding: 12, 
+    padding: 12,
   },
-  donthaveaccountText:{
+  donthaveaccountText: {
     fontWeight: "500",
-    color:"#959595",
-    fontSize:16
+    color: "#959595",
+    fontSize: 16
   }
 });
