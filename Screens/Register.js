@@ -70,7 +70,7 @@ const Register = () => {
               <TextInput
                 value={name}
                 onChangeText={(text) => setName(text)}
-                placeholder="enter your Email"
+                placeholder="Enter your Name"
                 placeholderTextColor={"#959595"}
                 style={styles.detailsinput}
               />
@@ -80,7 +80,7 @@ const Register = () => {
               <TextInput
                 value={email}
                 onChangeText={(text) => setEmail(text)}
-                placeholder="enter your Email"
+                placeholder="Enter your Email"
                 placeholderTextColor={"#959595"}
                 style={styles.detailsinput}
               />
@@ -91,7 +91,7 @@ const Register = () => {
                 value={password}
                 secureTextEntry={true}
                 onChangeText={(text) => setPassword(text)}
-                placeholder="enter your Password"
+                placeholder="Enter your Password"
                 placeholderTextColor={"#959595"}
                 style={styles.detailsinput}
               />
@@ -105,10 +105,7 @@ const Register = () => {
             <Text style={styles.forgotpasswordText}>Forgot Password?</Text>
           </View>
           <View>
-            <Pressable
-              onPress={handleRegister}
-
-              style={styles.loginbutton}>
+            <Pressable onPress={handleRegister} style={styles.loginbutton}>
               <Text style={styles.loginbuttontext}>Register</Text>
             </Pressable>
             <Pressable style={styles.donthaveaccount}>
