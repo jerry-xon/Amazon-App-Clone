@@ -22,10 +22,10 @@ const StackNavigator = () => {
           component={Home}
           options={{
             tabBarLabel: "Home",
-            tabBarLabelStyle: { color: "#008E907" },
+            tabBarLabelStyle: { color: "#008E97" },
             headerShown: false,
             tabBarIcon: ({ focused }) =>
-              focused ? (<Entypo name="home" size={24} color="#008E907" />) : (<AntDesign name="home" size={24} color="black" />)
+              focused ? (<Entypo name="home" size={24} color="#008E97" />) : (<AntDesign name="home" size={24} color="black" />)
           }}
         />
         <Tab.Screen
@@ -33,10 +33,10 @@ const StackNavigator = () => {
           component={Home}
           options={{
             tabBarLabel: "Profile",
-            tabBarLabelStyle: { color: "#008E907" },
+            tabBarLabelStyle: { color: "#008E97" },
             headerShown: false,
             tabBarIcon: ({ focused }) =>
-              focused ? (<Ionicons name="person" size={24} color="#008E907" />) : (<Ionicons name="person-outline" size={24} color="black" />)
+              focused ? (<Ionicons name="person" size={24} color="#008E97" />) : (<Ionicons name="person-outline" size={24} color="black" />)
           }}
         />
         <Tab.Screen
@@ -44,10 +44,10 @@ const StackNavigator = () => {
           component={Home}
           options={{
             tabBarLabel: "Cart",
-            tabBarLabelStyle: { color: "#008E907" },
+            tabBarLabelStyle: { color: "#008E97" },
             headerShown: false,
             tabBarIcon: ({ focused }) =>
-              focused ? (<AntDesign name="shoppingcart" size={24} color="#008E907" />) : (<AntDesign name="shoppingcart" size={24} color="" />)
+              focused ? (<AntDesign name="shoppingcart" size={24} color="#008E97" />) : (<AntDesign name="shoppingcart" size={24} color="" />)
           }}
         />
       </Tab.Navigator>
